@@ -36,12 +36,9 @@ class DropboxManager:
     def __init__(self, access_token: Optional[str] = None) -> None:
         """
         Initializes the Dropbox Team Client.
-
         Prioritizes the passed access_token; falls back to the 'ACCESS_TOKEN' environment variable if not provided.
-
         Args:
             access_token: The Dropbox API access token.
-
         Raises:
             DropboxConfigError: If the access token is missing or client initialization fails.
         """
@@ -61,15 +58,11 @@ class DropboxManager:
     def _fetch_team_events(self, lookback_minutes: int = 1000) -> Generator[Any, None, None]:
         """
         Retrieves team events occurring within a specified time window.
-
         This method handles API pagination and respects rate limits by implementing a backoff strategy when necessary.
-
         Args:
             lookback_minutes: The number of minutes into the past to query for events.
-
         Yields:
             Event objects returned by the Dropbox Team Log API.
-
         Raises:
             ApiError: If an unrecoverable error occurs during the API call.
         """
@@ -107,10 +100,8 @@ class DropboxManager:
     def process_team_events(self, lookback_minutes: int = 1000) -> None:
         """
         Gathers and logs metadata for team events in a single pass.
-
         This method consumes the event generator, logs specific event details,
         and calculates the frequency of event types.
-
         Args:
             lookback_minutes: The lookback window in minutes for event retrieval.
         """
