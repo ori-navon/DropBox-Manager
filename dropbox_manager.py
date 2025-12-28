@@ -55,7 +55,7 @@ class DropboxManager:
             logger.critical(f"Client initialization failed: {e}")
             raise DropboxConfigError("Failed to initialize DropboxTeam client.") from e
 
-    def _fetch_team_events(self, lookback_minutes: int = 1000) -> Generator[Any, None, None]:
+    def _fetch_team_events(self, lookback_minutes: int = 10) -> Generator[Any, None, None]:
         """
         Retrieves team events occurring within a specified time window.
         This method handles API pagination and respects rate limits by implementing a backoff strategy when necessary.
@@ -144,4 +144,4 @@ class DropboxManager:
 if __name__ == '__main__':
     # Initialize the manager and execute the processing workflow
     manager = DropboxManager()
-    manager.process_team_events(lookback_minutes=1000)
+    manager.process_team_events(lookback_minutes=10)
